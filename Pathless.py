@@ -1,8 +1,12 @@
-# Creating the Player class  to store the players name, race, stats, and items
-class Player:
-    races = ['Elf', 'Ork', 'Human', 'Wizard']
+# Imports everything contained in the Creatures, Player, Map, and Item files
+from Map import *
+from Items import *
+from Creatures import *
+from Player import *
 
-    def __init__(self, name, race):
-        self.name = name
-        self.race = race
-        self.stats = {'health': 10, 'attack': 10, 'defense': 10, 'speed': 10, 'intelligence': 10}
+# The main class where the game start will be called from
+class main:
+
+    # Function to initialize the game
+    def start():
+        pass
