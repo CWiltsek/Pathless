@@ -1,5 +1,6 @@
-# Imports everything from the Items file for the Player class to use
+# Imports everything from the Items and Map files for the Player class to use
 from Items import *
+from Map import *
 
 # Creating the Player class  to store the players name, race, stats, location, and items
 class Player:
@@ -16,16 +17,38 @@ class Player:
         self.x = 1
         self.y = 1
 
+        # Changes player stats based on chosen race
+        if race.title == 'Elf':
+            self.stats['speed'] += 5
+        if race.title == 'Ork':
+            self.stats['attack'] += 5
+        if race.title == 'Human':
+            for key in self.stats.keys():
+                self.stats[key] += 1
+        if race.title == 'Wizard':
+            self.stats['intelligence'] += 5
+
+    # Function used to check if the player collides with an Item or Creature
+    def check_collision(self, player):
+        if Map.dungeon[player.y][player.x] == ' ':
+            print('You have reached an empty room. ')    
+
+    # The move function to handle player movement given input
     def move(self, direction, distance):
         distance_remaining = distance
-        if direction.lower() == 'north':
-            if self.y == 1 and distance_remaining > 0:
-                print('You have reached a wall. Please choose another direction and distance.')
-                new_direction = input('Please specify a direction. ')
-                new_distance = input('Now specify a distance. ')
-                if not type(new_direction) == str or not new_direction.lower() in ['north', 'east', 'south', 'west']:
-                    print('Invalid directions choice. Please choose between north, south, east, or west. ')
+        while distance_remaining > 0:
+            if direction.lower() == 'north':
+                if self.y == 1:
+                    print('You have reached a wall. Please choose another direction and distance.')
                     new_direction = input('Please specify a direction. ')
-                if not type(new_distance) == int or not new_distance < 29:
-                    print('Invalid distance. Please choose a distance between 1 and 28. ')
+                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'east', 'south', 'west']:
+                        print('Invalid directions choice. Please choose between north, south, east, or west. ')
+                        new_direction = input('Specify a direction. ')
                     new_distance = input('Now specify a distance. ')
+                    if not type(new_distance) == int or not new_distance < 29:
+                        print('Invalid distance. Please choose a distance between 1 and 28. ')
+                        new_distance = input('Specify a distance. ')
+                    return
+                self.y -= 1
+                distance_remaining -= 1
+                Player.check_collision(self)        
