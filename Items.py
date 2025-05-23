@@ -2,4 +2,14 @@
 class Items:
     
     # Item variables with their attributed stored in dictionaries
-    pass
+    no_item = {'name': 'Nothing equipped currently'}
+
+    sword_of_avalon = {'name': 'Sword of Avalon', 'stats': {'attack': 11, 'speed': 2}}
+
+    merlins_staff = {'name': 'Merlin\'s Staff', 'stats': {'intelligence': 5, 'attack': 7}}
+
+    stone_skin_armor = {'name': 'Stone Skin Armor', 'stats': {'defense': 15}}
+
+    skeleton_key = {'name': 'Skeleton Key'}
+
+    health_potion = {'name': 'Health Potion', 'stats': {'health': 10}}

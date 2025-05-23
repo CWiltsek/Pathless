@@ -12,5 +12,6 @@ class Player:
         self.race = race
         self.stats = {'health': 10, 'attack': 10, 'defense': 10, 'speed': 10, 'intelligence': 10}
         self.backpack = []
-        self.equipped_item = Items()
-        self.location = [0, 0]
+        self.equipped_item = Items.no_item
+        self.x = 1
+        self.y = 1
