@@ -22,4 +22,9 @@ class main:
             race = input('Please choose a race between Elf, Ork, Human, or Wizard. ')
         player = Player(name, race)
 
+        print('After choosing your name and race please choose a direction and distance to travel.')
+        new_direction = input('Please choose a cardinal direction you wish to travel in. ')
+        new_distance = input('Please choose a whole number distancce you wish to travel. ')
+        player.move(new_direction, new_distance)
+
     start()

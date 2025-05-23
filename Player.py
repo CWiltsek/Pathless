@@ -35,7 +35,21 @@ class Player:
     # The move function to handle player movement given input and checking if a wall is reached
     def move(self, direction, distance):
 
-        distance_remaining = distance
+        if not direction in ['north', 'south', 'east', 'west']:
+
+            print('Please choose on of the four cardinal directions (North, South, East, or West) ')
+            new_direction = input('Please specify a direction. ')
+        
+            if int(distance) < 0:
+
+                print('Please choose a positve numbered distance to travel. ')
+                new_distance = input('Please specify the distance you wish to travel. ')
+
+                self.move(new_direction, new_distance)
+
+            self.move(new_direction, distance)
+
+        distance_remaining = int(distance)
 
         while distance_remaining > 0 and not self.is_busy:
 
@@ -46,9 +60,9 @@ class Player:
                     print('You have reached a wall. Please choose another direction and distance.')
                     new_direction = input('Please specify a direction. ')
 
-                    if not type(new_direction) == str or not new_direction.lower() in ['east', 'south', 'west']:
-                        
-                        print('Invalid directions choice. Please choose between south, east, or west. ')
+                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'south', 'east', 'west']:
+
+                        print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
                     new_distance = input('Now specify a distance. ')
@@ -64,7 +78,7 @@ class Player:
 
                 self.y -= 1
                 distance_remaining -= 1
-                Map.check_collision(self)   
+                Map.check_collision(self)
 
             elif direction.lower() == 'south':
 
@@ -73,9 +87,9 @@ class Player:
                     print('You have reached a wall. Please choose another direction and distance.')
                     new_direction = input('Please specify a direction. ')
 
-                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'east', 'west']:
+                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'south', 'east', 'west']:
 
-                        print('Invalid directions choice. Please choose between north, east, or west. ')
+                        print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
                     new_distance = input('Now specify a distance. ')
@@ -100,9 +114,9 @@ class Player:
                     print('You have reached a wall. Please choose another direction and distance.')
                     new_direction = input('Please specify a direction. ')
 
-                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'south', 'west']:
+                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'south', 'east', 'west']:
 
-                        print('Invalid directions choice. Please choose between north, south, or west. ')
+                        print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
                     new_distance = input('Now specify a distance. ')
@@ -127,9 +141,9 @@ class Player:
                     print('You have reached a wall. Please choose another direction and distance.')
                     new_direction = input('Please specify a direction. ')
 
-                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'south', 'east']:
+                    if not type(new_direction) == str or not new_direction.lower() in ['north', 'south', 'east', 'west']:
 
-                        print('Invalid directions choice. Please choose between north, south, or east. ')
+                        print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
                     new_distance = input('Now specify a distance. ')

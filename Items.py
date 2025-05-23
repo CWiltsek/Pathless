@@ -15,16 +15,16 @@ class Items:
     health_potion = {'name': 'Health Potion', 'stats': {'health': 10}}
 
     # A function to udate the player's stats based on the equipped item.
-    def updateStats(self, player, is_being_unequipped):
+    def updateStats(player, is_being_unequipped):
 
         if not is_being_unequipped:
 
             for key in player.equipped_item['stats']:
 
-                player.stats[key] += player.eqipped_item['stats'][key]
+                player.stats[key] += player.equipped_item['stats'][key]
 
         else:
 
             for key in player.equipped_item['stats']:
-                
-                player.stats[key] -= player.eqipped_item['stats'][key]
+
+                player.stats[key] -= player.equipped_item['stats'][key]
