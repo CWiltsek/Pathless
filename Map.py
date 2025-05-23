@@ -1,3 +1,6 @@
+# Imports Items for the map to give to the player once found
+from Items import *
+
 # Creating the Map class which will hold the map data for the game
 class Map:
     
@@ -36,5 +39,30 @@ class Map:
     
     # Function used to check if the player collides with an Item or Creature and call Player.move() after the collision action is taken
     def check_collision(self, player):
+
         if Map.dungeon[player.y][player.x] == ' ':
-            print('You have reached an empty room. ')    
+
+            print('You have reached an empty room. ')
+
+        if Map.dungeon[player.y][player.x] == 'S':
+
+            print('You found the Sword of Avalon!')
+            new_item = input(f'The sword will be stored in your backpack unless you equip it. Currently you have {player.equipped_item} equipped. Would you like to equip? Y/N? ')
+
+            if not new_item.lower() in ['y', 'n']:
+
+                print('Please choose Y or N')
+                new_item = input('Equip the sword? Y/N? ')
+
+            if new_item.lower() == 'y':
+
+                if player.equipped_item == Items.no_item:
+
+                    player.equipped_item = Items.sword_of_avalon
+                    Items.updateStats(player, False)
+
+                else:
+                    
+                    player.backpack.append(player.equipped_item)
+                    Items.updateStats(player, True)
+                    player.equipped_item = Items.sword_of_avalon
