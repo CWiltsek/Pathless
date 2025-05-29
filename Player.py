@@ -9,6 +9,7 @@ class Player:
 
     # Contructor for the Player class where the player can choose a name and race and have their stats, location, items stored in their bag, and if the pllayer is busy in an action
     def __init__(self, name, race):
+
         self.name = name
         self.race = race
         self.stats = {'health': 10, 'attack': 10, 'defense': 10, 'speed': 10, 'intelligence': 10}
@@ -65,11 +66,11 @@ class Player:
                         print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
-                    new_distance = input('Now specify a distance. ')
+                    new_distance = int(input('Now specify a distance. '))
 
-                    if not type(new_distance) == int or not new_distance < 29:
+                    if not new_distance > 0:
 
-                        print('Invalid distance. Please choose a distance between 1 and 28. ')
+                        print('Invalid distance. Please choose a positive whole number distance to travel.')
                         new_distance = input('Specify a distance. ')
 
                     self.move(new_direction, new_distance)
@@ -92,11 +93,11 @@ class Player:
                         print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
-                    new_distance = input('Now specify a distance. ')
+                    new_distance = int(input('Now specify a distance. '))
 
-                    if not type(new_distance) == int or not new_distance < 29:
+                    if not new_distance > 0:
 
-                        print('Invalid distance. Please choose a distance between 1 and 28. ')
+                        print('Invalid distance. Please choose a positive whole number distance to travel.')
                         new_distance = input('Specify a distance. ')
 
                     self.move(new_direction, new_distance)
@@ -119,11 +120,11 @@ class Player:
                         print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
-                    new_distance = input('Now specify a distance. ')
+                    new_distance = int(input('Now specify a distance. '))
 
-                    if not type(new_distance) == int or not new_distance < 29:
+                    if not new_distance > 0:
 
-                        print('Invalid distance. Please choose a distance between 1 and 28. ')
+                        print('Invalid distance. Please choose a positive whole number distance to travel.')
                         new_distance = input('Specify a distance. ')
 
                     self.move(new_direction, new_distance)
@@ -146,11 +147,11 @@ class Player:
                         print('Invalid directions choice. Please choose between north, south, east, or west. ')
                         new_direction = input('Specify a direction. ')
 
-                    new_distance = input('Now specify a distance. ')
+                    new_distance = int(input('Now specify a distance. '))
 
-                    if not type(new_distance) == int or not new_distance < 29:
+                    if not new_distance > 0:
 
-                        print('Invalid distance. Please choose a distance between 1 and 28. ')
+                        print('Invalid distance. Please choose a positive whole number distance to travel.')
                         new_distance = input('Specify a distance. ')
 
                     self.move(new_direction, new_distance)

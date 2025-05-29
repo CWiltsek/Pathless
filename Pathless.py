@@ -7,6 +7,11 @@ from Player import *
 # The main class where the game start will be called from
 class main:
 
+    # Resets the game to a base state
+    def reset():
+
+        Map.dungeon = Map.reset_dungeon
+
     # Function to initialize the game
     def start():
 
