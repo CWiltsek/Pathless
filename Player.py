@@ -162,7 +162,7 @@ class Player:
                 distance_remaining -= 1
                 Map.check_collision(self)
 
-        if distance_remaining == 0 and not self.is_busy:
+        if distance_remaining == 0 and not self.is_busy and not Map.dungeon[self.y][self.x] == 'E':
 
             new_direction = input('Please specify a direction. ')
             new_distance = int(input('Now specify a distance. '))

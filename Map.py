@@ -101,10 +101,14 @@ class Map:
 
                 if player.equipped_item == Items.no_item:
 
+                    print('You have equipped {equipped}!'.format(equipped = Items.sword_of_avalon['name']))
+
                     player.equipped_item = Items.sword_of_avalon
                     Items.updateStats(player, False)
 
                 else:
+
+                    print('You have unequipped {unequipped} and have equipped {equipped} instead!'.format(unequipped = player.equipped_item['name'], equipped = Items.sword_of_avalon['name']))
 
                     player.backpack.append(player.equipped_item)
                     Items.updateStats(player, True)
