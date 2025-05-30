@@ -75,6 +75,18 @@ class Map:
 
             print('You have reached an empty room. [{x}, {y}]'.format(x = player.x, y = player.y))
 
+        if Map.dungeon[player.y][player.x] == 'E':
+
+            print("""
+                  Y   Y    OOO     U   U            W   W    IIIII   N   N
+                   Y Y    O   O    U   U            W   W      I     NN  N
+                    Y     O   O    U   U            W   W      I     N N N
+                    Y     O   O    U   U            W W W      I     N  NN
+                    Y     O   O    U   U            WW WW      I     N   N
+                    Y     O   O    U   U            WW WW      I     N   N
+                    Y      OOO      UUU             W   W    IIIII   N   N
+                  """)
+
         if Map.dungeon[player.y][player.x] == 'S':
 
             print('You found the Sword of Avalon!')
@@ -97,6 +109,7 @@ class Map:
                     player.backpack.append(player.equipped_item)
                     Items.updateStats(player, True)
                     player.equipped_item = Items.sword_of_avalon
+                    Items.updateStats(player, False)
 
             else:
 
