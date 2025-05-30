@@ -20,17 +20,18 @@ class Player:
         self.is_busy = False
 
         # Changes player stats based on chosen race
-        if race.title == 'Elf':
+        if self.race.title() == 'Elf':
+            print('yes')
             self.stats['speed'] += 5
 
-        if race.title == 'Ork':
+        if self.race.title() == 'Ork':
             self.stats['attack'] += 5
 
-        if race.title == 'Human':
+        if self.race.title() == 'Human':
             for key in self.stats.keys():
                 self.stats[key] += 1
 
-        if race.title == 'Wizard':
+        if self.race.title() == 'Wizard':
             self.stats['intelligence'] += 5
 
     # The move function to handle player movement given input and checking if a wall is reached
@@ -161,3 +162,7 @@ class Player:
                 self.x -= 1
                 distance_remaining -= 1
                 Map.check_collision(self)
+
+    def __repr__(self):
+
+        print('{name} of race {race} has {equipped} equipped currently with the items {backpack_items} in their backpack. {name}\'s location is {x}, {y} and their stats are {stats}.'.format(name = self.name, race = self.race, equipped = self.equipped_item['name'], backpack_items = self.backpack, x = self.x, y = self.y, stats = self.stats))

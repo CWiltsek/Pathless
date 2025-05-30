@@ -2,7 +2,7 @@
 class Items:
     
     # Item variables with their attributed stored in dictionaries
-    no_item = {'name': 'Nothing equipped currently', 'stats': {'attack': 0}}
+    no_item = {'name': 'Nothing', 'stats': {'attack': 0}}
 
     sword_of_avalon = {'name': 'Sword of Avalon', 'stats': {'attack': 11, 'speed': 2}}
 
