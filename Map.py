@@ -73,7 +73,7 @@ class Map:
 
         if Map.dungeon[player.y][player.x] == ' ':
 
-            print('You have reached an empty room. ')
+            print('You have reached an empty room. [{x}, {y}]'.format(x = player.x, y = player.y))
 
         if Map.dungeon[player.y][player.x] == 'S':
 

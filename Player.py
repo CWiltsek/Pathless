@@ -21,7 +21,6 @@ class Player:
 
         # Changes player stats based on chosen race
         if self.race.title() == 'Elf':
-            print('yes')
             self.stats['speed'] += 5
 
         if self.race.title() == 'Ork':
@@ -162,6 +161,12 @@ class Player:
                 self.x -= 1
                 distance_remaining -= 1
                 Map.check_collision(self)
+
+        if distance_remaining == 0 and not self.is_busy:
+
+            new_direction = input('Please specify a direction. ')
+            new_distance = int(input('Now specify a distance. '))
+            self.move(new_direction, new_distance)
 
     def __repr__(self):
 
