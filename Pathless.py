@@ -16,7 +16,23 @@ class main:
     def start():
 
         # Creates an instance of the Player class with input
-        print('Welcome to the dungeon!')
+        print("""
+                    W   W    EEEEE    L         CCCC     OOO     M   M    EEEEE        TTTTT     OOO         TTTTT    H   H    EEEEE
+                    W   W    E        L        C        O   O    MM MM    E              T      O   O          T      H   H    E 
+                    W   W    E        L        C        O   O    MM MM    E              T      O   O          T      H   H    E 
+                    W W W    EEEEE    L        C        O   O    M M M    EEE            T      O   O          T      HHHHH    EEEEE
+                    WW WW    E        L        C        O   O    M   M    E              T      O   O          T      H   H    E 
+                    WW WW    E        L        C        O   O    M   M    E              T      O   O          T      H   H    E 
+                    W   W    EEEEE    LLLLL     CCCC     OOO     M   M    EEEEE          T       OOO           T      H   H    EEEEE
+              
+                                                DDDD     U   U    N   N     GGG     EEEEE     OOO     N   N
+                                                D   D    U   U    NN  N    G   G    E        O   O    NN  N 
+                                                D   D    U   U    N N N    G        E        O   O    N N N 
+                                                D   D    U   U    N  NN    G  GG    EEEEE    O   O    N  NN
+                                                D   D    U   U    N   N    G   G    E        O   O    N   N
+                                                D   D    U   U    N   N    G   G    E        O   O    N   N 
+                                                DDDD      UUU     N   N     GGG     EEEEE     OOO     N   N 
+                  """)
         name = input('Please choose your character\'s name. ')
         if not type(name) == str:
             print('Invalid name choice. Must be a valid string. ')

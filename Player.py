@@ -162,12 +162,13 @@ class Player:
                 distance_remaining -= 1
                 Map.check_collision(self)
 
-        if distance_remaining == 0 and not self.is_busy and not Map.dungeon[self.y][self.x] == 'E':
+        if distance_remaining == 0 and not self.is_busy and not Map.dungeon[self.y][self.x] == 'E' and not self.stats['health'] <= 0:
 
             new_direction = input('Please specify a direction. ')
             new_distance = int(input('Now specify a distance. '))
             self.move(new_direction, new_distance)
 
+    # Method to represent the instance of Player
     def __repr__(self):
 
         print('{name} of race {race} has {equipped} equipped currently with the items {backpack_items} in their backpack. {name}\'s location is {x}, {y} and their stats are {stats}.'.format(name = self.name, race = self.race, equipped = self.equipped_item['name'], backpack_items = self.backpack, x = self.x, y = self.y, stats = self.stats))
