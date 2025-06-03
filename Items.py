@@ -2,8 +2,6 @@
 class Items:
     
     # Item variables with their attributed stored in dictionaries
-    no_item = {'name': 'Nothing', 'stats': {'attack': 0}}
-
     sword_of_avalon = {'name': 'Sword of Avalon', 'stats': {'attack': 11, 'speed': 2}}
 
     merlins_staff = {'name': 'Merlin\'s Staff', 'stats': {'intelligence': 5, 'attack': 7}}
@@ -15,16 +13,16 @@ class Items:
     health_potion = {'name': 'Health Potion', 'stats': {'health': 10}}
 
     # A function to udate the player's stats based on the equipped item.
-    def updateStats(player, is_being_unequipped):
+    def updateStats(player, item, is_being_unequipped):
 
         if not is_being_unequipped:
 
-            for key in player.equipped_item['stats']:
+            for key in item['stats']:
 
-                player.stats[key] += player.equipped_item['stats'][key]
+                player.stats[key] += item['stats'][key]
 
         else:
 
-            for key in player.equipped_item['stats']:
+            for key in item['stats']:
 
-                player.stats[key] -= player.equipped_item['stats'][key]
+                player.stats[key] -= item['stats'][key]
