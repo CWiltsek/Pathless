@@ -33,14 +33,21 @@ class main:
                                                 D   D    U   U    N   N    G   G    E        O   O    N   N 
                                                 DDDD      UUU     N   N     GGG     EEEEE     OOO     N   N 
                   """)
+        
         name = input('Please choose your character\'s name. ')
+
         if not type(name) == str:
+            
             print('Invalid name choice. Must be a valid string. ')
             name = input('Please choose your character\'s name. ')
+
         race = input('Now choose a race between Elf, Ork, Human, or Wizard. ')
+
         if not race.title() in Player.races:
+
             print('Invalid race choice. ')
             race = input('Please choose a race between Elf, Ork, Human, or Wizard. ')
+
         player = Player(name, race)
 
         print('After choosing your name and race please choose a direction and distance to travel.')

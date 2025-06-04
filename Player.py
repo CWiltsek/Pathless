@@ -1,5 +1,4 @@
 # Imports everything from the Items and Map files for the Player class to use
-from Items import *
 from Map import *
 
 # Creating the Player class  to store the players name, race, stats, location, and items
@@ -36,19 +35,19 @@ class Player:
     # The move function to handle player movement given input and checking if a wall is reached
     def move(self, direction, distance):
 
-        if not direction in ['north', 'south', 'east', 'west']:
+        if not direction.lower() in ['north', 'south', 'east', 'west']:
 
             print('Please choose on of the four cardinal directions (North, South, East, or West) ')
             new_direction = input('Please specify a direction. ')
-        
-            if int(distance) < 0:
-
-                print('Please choose a positve numbered distance to travel. ')
-                new_distance = input('Please specify the distance you wish to travel. ')
-
-                self.move(new_direction, new_distance)
 
             self.move(new_direction, distance)
+        
+        if int(distance) <= 0:
+
+            print('Please choose a positve numbered distance to travel. ')
+            new_distance = input('Please specify the distance you wish to travel. ')
+
+            self.move(direction, new_distance)
 
         distance_remaining = int(distance)
 
@@ -162,11 +161,47 @@ class Player:
                 distance_remaining -= 1
                 Map.check_collision(self)
 
+        # Keep asking for player input if they have health reamining and previous movement has ended
         if distance_remaining == 0 and not self.is_busy and not Map.dungeon[self.y][self.x] == 'E' and  self.stats['health'] > 0:
 
             new_direction = input('Please specify a direction. ')
             new_distance = int(input('Now specify a distance. '))
             self.move(new_direction, new_distance)
+
+    # Method for battling between the player and a creature
+    def fight(self, creature):
+
+        higher_stat = 'attack'
+
+        if self.stats['intelligence'] > self.stats['attack']:
+
+            higher_stat = 'intelligence'
+
+        while self.stats['health'] > 0 and creature.stats['health'] > 0:
+
+            if self.stats['speed'] >= creature.stats['speed']:
+
+                creature.stats['health'] -= self.stats[higher_stat] - creature.stats['defense']
+
+                if creature.stats['health'] > 0:
+
+                    self.stats['health'] -= creature.stats['attack'] - self.stats['defense']
+
+            else:
+
+                self.stats['health'] -= creature.stats['attack'] - self.stats['defense']
+
+                if self.stats['health'] > 0:
+
+                    creature.stats['health'] -= self.stats[higher_stat] - creature.stats['defense']
+
+        if self.stats['health'] <= 0:
+
+            print('You Lose')
+
+        elif creature.stats['health'] <= 0:
+
+            print('You have defeated the {creature}!'.format(creature = creature.type))
 
     # Method to represent the instance of Player
     def __repr__(self):

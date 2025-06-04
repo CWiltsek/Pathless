@@ -11,7 +11,7 @@ class Creatures:
     def __init__(self):
 
         self.type = type = random.choice(Creatures.types)
-        self.stats = {'health': 10, 'attack': 10, 'defense': 10, 'speed': 10}
+        self.stats = {'health': 5, 'attack': 3, 'defense': 3, 'speed': 5}
 
         if type == 'Minotar':
             self.stats['attack'] += 10

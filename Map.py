@@ -1,5 +1,6 @@
-# Imports Items for the map to give to the player once found
+# Imports Items for the map to give to the player once found and Creautres to populate rooms in the dungeon
 from Items import *
+from Creatures import *
 
 # Creating the Map class which will hold the map data for the game
 class Map:
@@ -53,7 +54,7 @@ class Map:
                      ['.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.'],
                      ['.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.'],
                      ['.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'C', 'E', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.'],
-                     ['.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.'],
+                     ['.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.'],
                      ['.', ' ', ' ', ' ', 'C', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.'],
                      ['.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'C', ' ', ' ', ' ', '.'],
                      ['.', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '.'],
@@ -71,10 +72,12 @@ class Map:
     # Function used to check if the player collides with an Item or Creature and call Player.move() after the collision action is taken
     def check_collision(player):
 
+        # Empty room collision handling
         if Map.dungeon[player.y][player.x] == ' ':
 
             print('You have reached an empty room. [{x}, {y}]'.format(x = player.x, y = player.y))
 
+        # Exit collision handling
         if Map.dungeon[player.y][player.x] == 'E':
 
             if Items.skeleton_key in player.backpack:
@@ -97,6 +100,7 @@ class Map:
                 new_distance = input('Please choose a whole number distancce you wish to travel. ')
                 player.move(new_direction, new_distance)
 
+        # Sword of Avalon collision handling
         if Map.dungeon[player.y][player.x] == 'S':
 
             print('You found the Sword of Avalon!')
@@ -136,6 +140,7 @@ class Map:
             new_distance = input('Please choose a whole number distancce you wish to travel. ')
             player.move(new_direction, new_distance)
 
+        # Merlin's Staff collision handling
         if Map.dungeon[player.y][player.x] == 'M':
 
             print('You found Merlin\'s Staff!')
@@ -175,6 +180,7 @@ class Map:
             new_distance = input('Please choose a whole number distancce you wish to travel. ')
             player.move(new_direction, new_distance)
 
+        # Stone Skin Armor collision handling
         if Map.dungeon[player.y][player.x] == 'A':
 
             print('You found the Stone Skin Armor!')
@@ -204,6 +210,7 @@ class Map:
             new_distance = input('Please choose a whole number distancce you wish to travel. ')
             player.move(new_direction, new_distance)
 
+        # Health potion collision handling
         if Map.dungeon[player.y][player.x] == 'H':
 
             print('You found a health potion!')
@@ -231,6 +238,7 @@ class Map:
             new_distance = input('Please choose a whole number distancce you wish to travel. ')
             player.move(new_direction, new_distance)
 
+        # Skeleton Key collision handling
         if Map.dungeon[player.y][player.x] == 'K':
 
             print('You found the Skeleton Key! Time to find the exit.')
@@ -244,7 +252,18 @@ class Map:
             new_distance = input('Please choose a whole number distancce you wish to travel. ')
             player.move(new_direction, new_distance)
 
+        # Creature collision handling
         if Map.dungeon[player.y][player.x] == 'C':
 
-            pass
+            creature = Creatures()
+            
+            player.fight(creature)
 
+            Map.dungeon[player.y][player.x] = ' '
+
+            if player.stats['health'] > 0:
+
+                print('After defeating the {creature} you must choose a direction and distance.'.format(crature = creature.type))
+                new_direction = input('Please choose a cardinal direction you wish to travel in. ')
+                new_distance = input('Please choose a whole number distancce you wish to travel. ')
+                player.move(new_direction, new_distance)
